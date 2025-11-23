@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block "page_header" %}Lead{% endblock %}
+
+{% block "content" %}
+
+<div class="content">
+<div class="page-heading">
+    <h1>Lead</h1>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 portlets">
+        <div class="widget">
+            <div class="widget-content padding">
+                <form method="POST">
+                    {% csrf_token %}
+                <div class="form-group">
+                        <label>{{ form.branch.label }}</label>
+                        {{ form.branch }}
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>{{ form.full_name.label }}</label>
+                            {{ form.full_name }}
+                        </div>
+                        <div class="col-sm-6">
+                            <label>{{ form.case_type.label }}</label>
+                            {{ form.case_type }}
+                        </div>
+                    </div>
+                     
+                  </div>
+                <div class="form-group">
+                        <label>{{ form.countery_for_apply.label }}</label>
+                        {{ form.countery_for_apply }}
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>{{ form.qualification.label }}</label>
+                            {{ form.qualification }}
+                        </div>
+                        <div class="col-sm-6">
+                            <label>{{ form.experience.label }}</label>
+                            {{ form.experience }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>{{ form.mobile_number.label }}</label>
+                            {{ form.mobile_number }}
+                        </div>
+                        <div class="col-sm-6">
+                            <label>{{ form.email.label }}</label>
+                            {{ form.email }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>{{ form.description.label }}</label>
+                    {{ form.description }}
+                </div>
+                <div class="form-group">
+                    <label>{{ form.succeed.label }}</label>
+                    {{ form.succeed }}
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

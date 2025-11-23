@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block "page_header" %}Applications{% endblock %}
+
+{% block "content" %}
+
+<div class="content">
+<div class="page-heading">
+    <h1>Applications</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="widget">
+            <div class="widget-content">
+                <div class="data-table-toolbar">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <form name="search-form" action="{% url 'application-search' %}" method="GET">
+                                <input type="text" name="q" class="form-control" placeholder="Search Application...">
+                            </form>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="toolbar-btn-action">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table data-sortable class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Image</th>
+                                <th>Full Name</th>
+                                <th>File Number</th>
+                                <th>Case Type</th>
+                                <th>Country</th>
+                                <th>Mobile</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            {% for application in applications %}
+                            <tr>
+                                <td>{{ application.id }}</td>
+                                {% if application.image %}
+                                    <td><img src="{{ application.image.url }}" class="rounded-image" width="60px" height="60px" alt="image"></td>
+                                {% else %}
+                                    <td><img src="{% static 'dashboard/images/users/default-user.png' %}" class="rounded-image" width="60px" height="60px" alt="image"></td>
+                                {% endif %}
+                                <td><a href="{% url 'application-details' pk=application.id %}">{{ application.full_name }}</a></td>
+                                <td>{{ application.file_number }}</td>
+                                <td>{{ application.case_type }}</td>
+                                <td>{{ application.countery_for_apply }}</td>
+                                <td>{{ application.mobile_number }}</td>
+                                <td>
+                                {% if application.succeed == 'approved' %}
+                                    <span class="label label-success"><b>Approved</b></span>
+                                {% elif application.succeed == 'rejected' %}
+                                    <span class="label label-danger"><b>Rejected</b></span>
+                                {% else %}
+                                    <span class="label label-warning"><b>In Process</b></span>
+                                {% endif %}
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-xs">
+                                        {% if request.user.is_superuser %}
+                                            <a href="{% url 'delete-application' pk=application.id %}" data-toggle="tooltip" title="Delete" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
+                                            <a href="{% url 'edit-application' pk=application.id %}" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                                            <a href="{% url 'add-payment' pk=application.id %}" data-toggle="tooltip" title="Add Payment" class="btn btn-default"><i class="fa fa-money"></i></a>
+                                        {% else %}
+                                            <a href="{% url 'edit-application' pk=application.id %}" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                                            <a href="{% url 'add-payment' pk=application.id %}" data-toggle="tooltip" title="Add Payment" class="btn btn-default"><i class="fa fa-money"></i></a>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                    
+                <div class="data-table-toolbar">
+                    {% if is_paginated %}
+                    <ul class="pagination">
+						{% if page_obj.has_previous %}
+							<li><a href="?page=1">First</a></li>
+							<li><a href="?page={{ leads.previous_page_number }}">Previous</a></li>
+						{% endif %}
+					
+						{% for num in page_obj.paginator.page_range %}
+						{% if page_obj.number == num %}
+                            <li class="active"><a href="?page={{ num }}">{{ num }}</a></li>
+						{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <li><a href="?page={{ num }}">{{ num }}</a></li>
+						{% endif %}
+						{% endfor %}
+							
+						{% if page_obj.has_next %}
+                            <li><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                            <li><a href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+						{% endif %}
+                    </ul>
+					{% endif %}
+                    
+                    {% if applications.has_other_pages %}
+                    <ul class="pagination">
+						{% if applications.has_previous %}
+							<li><a href="?page=1">First</a></li>
+							<li><a href="?page={{ applications.previous_page_number }}">Previous</a></li>
+						{% endif %}
+					
+						{% for num in applications.paginator.page_range %}
+						{% if applications.number == num %}
+                            <li class="active"><a href="?page={{ num }}">{{ num }}</a></li>
+						{% elif num > applications.number|add:'-3' and num < applications.number|add:'3' %}
+                            <li><a href="?page={{ num }}">{{ num }}</a></li>
+						{% endif %}
+						{% endfor %}
+							
+						{% if applications.has_next %}
+                            <li><a href="?page={{ applications.next_page_number }}">Next</a></li>
+                            <li><a href="?page={{ applications.paginator.num_pages }}">Last</a></li>
+						{% endif %}
+                    </ul>
+					{% endif %} 
+                </div>
+            </div>
+        </div>
+    </div>
+        
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block "page_header" %}Application{% endblock %}
+
+{% block "content" %}
+
+<div class="content">
+<div class="page-heading">
+    <h1>Application</h1>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 portlets">
+        <div class="widget">
+            <div class="widget-content padding">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form }}
+                    </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

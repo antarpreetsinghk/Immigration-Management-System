@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block "page_header" %}Dashboard{% endblock %}
+
+{% block "content" %}
+<!-- Start info box -->
+<div class="content">
+<h2>Cases</h2>
+<div class="row top-summary">
+    <div class="col-lg-3 col-md-6">
+        <div class="widget blue-2">
+            <div class="widget-content padding">
+                <div class="widget-icon">
+
+                </div>
+                <div class="text-box">
+                    <p class="maindata">TOTAL <b>APPROVED CASES</b></p>
+                    <h2><span class="animate-number" data-value="{{ approved_cases }}" data-duration="2000">0</span></h2>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="widget-footer">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-caret-up rel-change"></i> <b></b>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="widget orange-2">
+            <div class="widget-content padding">
+                <div class="widget-icon">
+
+                </div>
+                <div class="text-box">
+                    <p class="maindata">TOTAL <b>REJECTED CASES</b></p>
+                    <h2><span class="animate-number" data-value="{{ rejected_cases }}" data-duration="2000">0</span></h2>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="widget-footer">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-caret-down rel-change"></i> <b></b>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="widget orange-4">
+            <div class="widget-content padding">
+                <div class="widget-icon">
+
+                </div>
+                <div class="text-box">
+                    <p class="maindata">IN <b>PROCESS</b></p>
+                    <h2><span class="animate-number" data-value="{{ inprocess_cases }}" data-duration="2000">0</span></h2>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="widget-footer">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-caret-up rel-change"></i> <b></b>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="widget blue-1">
+            <div class="widget-content padding">
+                <div class="widget-icon">
+
+                </div>
+                <div class="text-box">
+                    <p class="maindata">TOTAL <b>CASES</b></p>
+                    <h2><span class="animate-number" data-value="{{ total_cases }}" data-duration="2000">0</span></h2>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="widget-footer">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-caret-up rel-change"></i> <b></b>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>Leades</h2>
+<div class="row top-summary">
+    <div class="col-lg-3 col-md-6">
+        <div class="widget blue-2">
+            <div class="widget-content padding">
+                <div class="widget-icon">
+
+                </div>
+                <div class="text-box">
+                    <p class="maindata">TOTAL <b>Successful Leades</b></p>
+                    <h2><span class="animate-number" data-value="{{ approved_leades }}" data-duration="2000">0</span></h2>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="widget-footer">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-caret-up rel-change"></i> <b></b>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="widget orange-2">
+            <div class="widget-content padding">
+                <div class="widget-icon">
+
+                </div>
+                <div class="text-box">
+                    <p class="maindata">TOTAL <b>Unsuccessful Leades</b></p>
+                    <h2><span class="animate-number" data-value="{{ rejected_leades }}" data-duration="2000">0</span></h2>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="widget-footer">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-caret-down rel-change"></i> <b></b>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="widget orange-4">
+            <div class="widget-content padding">
+                <div class="widget-icon">
+
+                </div>
+                <div class="text-box">
+                    <p class="maindata">Total <b>Pending Leades</b></p>
+                    <h2><span class="animate-number" data-value="{{ inprocess_leades }}" data-duration="2000">0</span></h2>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="widget-footer">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-caret-up rel-change"></i> <b></b>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="widget blue-1">
+            <div class="widget-content padding">
+                <div class="widget-icon">
+
+                </div>
+                <div class="text-box">
+                    <p class="maindata">Total <b>Leades</b></p>
+                    <h2><span class="animate-number" data-value="{{ total_leades }}" data-duration="2000">0</span></h2>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="widget-footer">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-caret-up rel-change"></i> <b></b>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<h2>Summary</h2>
+<div class="row top-summary">
+    <div class="col-md-6 portlets">
+        <div class="widget">
+            <div class="widget-header ">
+                <h2>Leads</h2>
+            </div>
+            <div class="widget-content padding">
+                <span class="sparkline" sparkType="pie" values="{{ approved_leades }},{{ rejected_leades }},{{ inprocess_leades }}" sparkHeight="250px"></span>	                        
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 portlets">
+        <div class="widget">
+            <div class="widget-header ">
+                <h2>Cases</h2>
+            </div>
+            <div class="widget-content padding">
+                <span class="sparkline" sparkType="pie" values="{{ approved_cases }},{{ rejected_cases }},{{ inprocess_cases }}" sparkHeight="250px"></span>	                        
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- End of info box -->
+{% endblock %}

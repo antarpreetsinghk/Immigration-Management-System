@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block "page_header" %}Delete Lead{% endblock %}
+
+{% block "content" %}
+
+<div class="content">
+<div class="page-heading">
+    <h1>Delete Lead</h1>
+</div>
+
+<div class="row">
+    
+    <div class="col-sm-12 portlets">
+        
+        <div class="widget">
+            <div class="widget-content padding">							
+                <div id="basic-form">
+                    <form method="POST"">
+                        {% csrf_token %}
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Are you sure you want to delete the Lead "{{ object.full_name }}"</label>
+                      </div>
+                      <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                      <a class="btn btn-default" href="{% url 'leads' %}">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+</div>
+
+{% endblock %}
